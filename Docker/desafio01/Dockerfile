@@ -1,5 +1,10 @@
+FROM golang AS builder
+
+COPY hello.go .
+RUN go build hello.go
+
+
 FROM scratch
 
-COPY desafio01 /
-
-CMD ["/desafio01"]
+COPY --from=builder /go/hello .
+CMD ["./hello"]
