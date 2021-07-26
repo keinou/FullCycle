@@ -21,7 +21,6 @@ sql = `INSERT INTO people(name) values('Rafael Karczevski')`
 connection.query(sql)
 connection.end()
 
-
 app.get('/', (req,res) => {
     var response = '<h1>Full Cycle</h1>'
     
@@ -29,7 +28,7 @@ app.get('/', (req,res) => {
     connection.query("SELECT * FROM people", function (err, result, fields) {
         if (err) throw err;
         var i=1;
-            response += result[1]['name']
+            response += result[0]['name']
             res.send(response)
       });
 })

@@ -19,7 +19,7 @@ services:
       context: node
     container_name: app
     tty: true
-    entrypoint: sh entrypoint.sh
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 50s /usr/src/entrypoint.sh
     networks:
       - nodenetwork
     volumes:
@@ -39,7 +39,6 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
       - MYSQL_DATABASE=nodedb
-      - MYSQL_PASSWORD=root
       - MYSQL_ROOT_PASSWORD=root
     ports:
       - "3306:3306"
