@@ -19,6 +19,7 @@ services:
       context: node
     container_name: app
     tty: true
+    entrypoint: sh entrypoint.sh
     networks:
       - nodenetwork
     volumes:

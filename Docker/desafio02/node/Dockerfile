@@ -1,6 +1,9 @@
 FROM node:15
 
 WORKDIR /usr/src/app
-EXPOSE 3000
 
-CMD ["node", "index.js"]
+COPY package.json .
+COPY entrypoint.sh .
+
+RUN npm install
+EXPOSE 3000
