@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: goserver
-        image: "karczevski/hello-go:v5.5"
+        image: "karczevski/hello-go:v9.6"
         
         #definindo recursos minimos e limites
         resources:
@@ -71,6 +71,8 @@ spec:
           - mountPath: "/go/myfamily"
             name: config
             readOnly: true
+          - mountPath: "/go/pvc"
+            name: goserver-volume
 
         # env:
         #   - name: NAME
@@ -85,6 +87,9 @@ spec:
         #         key: AGE
 
       volumes:
+        - name: goserver-volume
+          persistentVolumeClaim:
+            claimName: goserver-pvc
         # de config para volume
         - name: config
           configMap:
